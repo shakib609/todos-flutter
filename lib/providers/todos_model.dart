@@ -5,11 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:todos/models/todo.dart';
 
 class TodosModel extends ChangeNotifier {
-  final List<Todo> _todos = [
-    Todo(title: 'Finish the app', completed: true),
-    Todo(title: 'Write a blog post'),
-    Todo(title: 'Share with community', completed: true),
-  ];
+  final List<Todo> _todos = [];
 
   UnmodifiableListView<Todo> get allTodos => UnmodifiableListView(_todos);
   UnmodifiableListView<Todo> get incompleteTodos =>
