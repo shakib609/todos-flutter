@@ -2,27 +2,42 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:todos/providers/todos_model.dart';
-import 'package:todos/models/todo.dart';
+import 'package:todos/models/task.dart';
 
-class AddTodoScreen extends StatefulWidget {
+class AddTaskScreen extends StatefulWidget {
   @override
-  _AddTodoScreenState createState() => _AddTodoScreenState();
+  _AddTaskScreenState createState() => _AddTaskScreenState();
 }
 
-class _AddTodoScreenState extends State<AddTodoScreen> {
-  final TextEditingController todoTitleController = TextEditingController();
+class _AddTaskScreenState extends State<AddTaskScreen> {
+  final taskTitleController = TextEditingController();
   bool completedStatus = false;
 
   @override
   void dispose() {
-    todoTitleController.dispose();
+    taskTitleController.dispose();
     super.dispose();
+  }
+
+  void onAdd() {
+    final String textVal = taskTitleController.text;
+    final bool completed = completedStatus;
+    if (textVal.isNotEmpty) {
+      final Task todo = Task(
+        title: textVal,
+        completed: completed,
+      );
+      Provider.of<TodosModel>(context, listen: false).addTodo(todo);
+      Navigator.pop(context);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Add Todo')),
+      appBar: AppBar(
+        title: Text('Add Task'),
+      ),
       body: ListView(
         children: <Widget>[
           Padding(
@@ -31,7 +46,7 @@ class _AddTodoScreenState extends State<AddTodoScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  TextField(controller: todoTitleController),
+                  TextField(controller: taskTitleController),
                   CheckboxListTile(
                     value: completedStatus,
                     onChanged: (checked) => setState(() {
@@ -41,19 +56,7 @@ class _AddTodoScreenState extends State<AddTodoScreen> {
                   ),
                   RaisedButton(
                     child: Text('Add'),
-                    onPressed: () {
-                      final String textVal = todoTitleController.text;
-                      final bool completed = completedStatus;
-                      if (textVal.isNotEmpty) {
-                        final Todo todo = Todo(
-                          title: textVal,
-                          completed: completed,
-                        );
-                        Provider.of<TodosModel>(context, listen: false)
-                            .addTodo(todo);
-                        Navigator.pop(context);
-                      }
-                    },
+                    onPressed: onAdd,
                   ),
                 ],
               ),

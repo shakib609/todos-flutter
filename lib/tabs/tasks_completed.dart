@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:todos/providers/todos_model.dart';
-import 'package:todos/widgets/todos_list.dart';
+import 'package:todos/widgets/task_list.dart';
 
-class TodosCompleteTab extends StatelessWidget {
+class TasksCompletedTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Consumer<TodosModel>(
-        builder: (context, todos, child) => TodosList(
-              todos: todos.completeTodos,
+        builder: (context, todos, child) => TaskList(
+              tasks: todos.completedTasks,
             ),
       ),
     );

@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import 'package:todos/screens/add_todo_screen.dart';
-import 'package:todos/tabs/todos_all.dart';
-import 'package:todos/tabs/todos_complete.dart';
-import 'package:todos/tabs/todos_incomplete.dart';
-import 'package:todos/models/todo.dart';
-import 'package:todos/providers/todos_model.dart';
+import 'package:todos/screens/add_task_screen.dart';
+import 'package:todos/tabs/tasks_all.dart';
+import 'package:todos/tabs/tasks_completed.dart';
+import 'package:todos/tabs/tasks_incomplete.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -35,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen>
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => AddTodoScreen(),
+                  builder: (context) => AddTaskScreen(),
                 ),
               );
             },
@@ -53,9 +50,9 @@ class _HomeScreenState extends State<HomeScreen>
       body: TabBarView(
         controller: controller,
         children: <Widget>[
-          TodosAllTab(),
-          TodosIncompleteTab(),
-          TodosCompleteTab(),
+          TasksAllTab(),
+          TasksIncompleteTab(),
+          TasksCompletedTab(),
         ],
       ),
     );

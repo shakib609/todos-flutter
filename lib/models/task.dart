@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class Todo {
+class Task {
   String title;
   bool completed;
 
-  Todo({@required this.title, this.completed = false});
+  Task({@required this.title, this.completed = false});
 
-  void toggleTodo() {
+  void toggleCompleted() {
     completed = !completed;
   }
 }

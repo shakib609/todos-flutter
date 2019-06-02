@@ -2,30 +2,30 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 
-import 'package:todos/models/todo.dart';
+import 'package:todos/models/task.dart';
 
 class TodosModel extends ChangeNotifier {
-  final List<Todo> _todos = [];
+  final List<Task> _tasks = [];
 
-  UnmodifiableListView<Todo> get allTodos => UnmodifiableListView(_todos);
-  UnmodifiableListView<Todo> get incompleteTodos =>
-      UnmodifiableListView(_todos.where((todo) => !todo.completed));
-  UnmodifiableListView<Todo> get completeTodos =>
-      UnmodifiableListView(_todos.where((todo) => todo.completed));
+  UnmodifiableListView<Task> get allTasks => UnmodifiableListView(_tasks);
+  UnmodifiableListView<Task> get incompleteTasks =>
+      UnmodifiableListView(_tasks.where((todo) => !todo.completed));
+  UnmodifiableListView<Task> get completedTasks =>
+      UnmodifiableListView(_tasks.where((todo) => todo.completed));
 
-  void addTodo(Todo todo) {
-    _todos.add(todo);
+  void addTodo(Task task) {
+    _tasks.add(task);
     notifyListeners();
   }
 
-  void toggleTodo(Todo todo) {
-    final todoIndex = _todos.indexOf(todo);
-    _todos[todoIndex].toggleTodo();
+  void toggleTodo(Task task) {
+    final taskIndex = _tasks.indexOf(task);
+    _tasks[taskIndex].toggleCompleted();
     notifyListeners();
   }
 
-  void deleteTodo(Todo todo) {
-    _todos.remove(todo);
+  void deleteTodo(Task task) {
+    _tasks.remove(task);
     notifyListeners();
   }
 }
