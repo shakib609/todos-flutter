@@ -11,12 +11,23 @@ class TaskListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CheckboxListTile(
-      value: task.completed,
-      onChanged: (checked) {
-        Provider.of<TodosModel>(context, listen: false).toggleTodo(task);
-      },
+    return ListTile(
+      leading: Checkbox(
+        value: task.completed,
+        onChanged: (bool checked) {
+          Provider.of<TodosModel>(context, listen: false).toggleTodo(task);
+        },
+      ),
       title: Text(task.title),
+      trailing: IconButton(
+        icon: Icon(
+          Icons.delete,
+          color: Colors.red,
+        ),
+        onPressed: () {
+          Provider.of<TodosModel>(context, listen: false).deleteTodo(task);
+        },
+      ),
     );
   }
 }
