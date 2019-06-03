@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:todos/screens/add_task_screen.dart';
-import 'package:todos/tabs/tasks_all.dart';
-import 'package:todos/tabs/tasks_completed.dart';
-import 'package:todos/tabs/tasks_incomplete.dart';
+import 'package:todos/tabs/all_tasks.dart';
+import 'package:todos/tabs/completed_tasks.dart';
+import 'package:todos/tabs/incomplete_tasks.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -50,9 +50,9 @@ class _HomeScreenState extends State<HomeScreen>
       body: TabBarView(
         controller: controller,
         children: <Widget>[
-          TasksAllTab(),
-          TasksIncompleteTab(),
-          TasksCompletedTab(),
+          AllTasksTab(),
+          IncompleteTasksTab(),
+          CompletedTasksTab(),
         ],
       ),
     );

@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:todos/providers/todos_model.dart';
 import 'package:todos/widgets/task_list.dart';
 
-class TasksAllTab extends StatelessWidget {
+class AllTasksTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
